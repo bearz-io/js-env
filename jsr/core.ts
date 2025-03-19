@@ -5,7 +5,7 @@ import { globals, WIN } from "./globals.ts";
 const BROWSER = globals.Deno === undefined && globals.process === undefined &&
     globals.navigator !== undefined;
 const WIN_DESKTOP = WIN && !BROWSER;
-const SEP = WIN_DESKTOP ? ":" : ";";
+const SEP = WIN_DESKTOP ? ";" : ":";
 const PATH_NAME = WIN_DESKTOP ? "Path" : "PATH";
 
 let proxy: Record<string, string | undefined> = {};
