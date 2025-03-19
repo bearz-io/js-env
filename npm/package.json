@@ -1,0 +1,61 @@
+{
+  "name": "@bearz/env",
+  "version": "0.1.0",
+  "description": "env module",
+  "homepage": "bearz.io",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bearz-io/js-env.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bearz-io/js-env/discussions"
+  },
+  "module": "./esm/mod.js",
+  "types": "./types/mod.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./types/mod.d.ts",
+        "default": "./esm/mod.js"
+      }
+    },
+    "./expand": {
+      "import": {
+        "types": "./types/expand.d.ts",
+        "default": "./esm/expand.js"
+      }
+    },
+    "./export": {
+      "import": {
+        "types": "./types/export.d.ts",
+        "default": "./esm/export.js"
+      }
+    }
+  },
+  "scripts": {
+    "test": "node --test",
+    "test:bun": "bun test"
+  },
+  "authors": [
+    {
+      "name": "jolt9dev",
+      "email": "dev@jolt9.com"
+    }
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "type": "module",
+  "dependencies": {
+    "@bearz/chars": "^0.1.0",
+    "@bearz/strings": "^0.1.0"
+  },
+  "devDependencies": {
+    "picocolors": "^1.0.0",
+    "@types/node": "^22.13.4",
+    "@bearz/testing": "^0.0.0",
+    "@bearz/assert": "^0.1.0"
+  },
+  "_generatedBy": "dnt@dev"
+}
