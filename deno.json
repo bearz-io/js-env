@@ -106,7 +106,7 @@
     "imports": {
         "@bearz/assert": "jsr:@bearz/assert@^0.1.0",
         "@bearz/chars": "jsr:@bearz/chars@^0.1.0",
-        "@bearz/strings": "jsr:@bearz/strings@^0.1.2",
+        "@bearz/strings": "jsr:@bearz/strings@^0.1.3",
         "@bearz/testing": "jsr:@bearz/testing@^0.0.0"
     },
     "workspace": [

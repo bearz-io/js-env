@@ -40,7 +40,7 @@ for (const key of Object.keys(denoJson.exports)) {
 
 const deps: Record<string, string> = {
     "@bearz/chars": "^0.1.0",
-    "@bearz/strings": "^0.1.0",
+    "@bearz/strings": "^0.1.3",
 };
 const devDeps: Record<string, string> = {
     "@types/node": "^22.13.4",
