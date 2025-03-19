@@ -3,7 +3,7 @@
  *
  * The env provides a uniform way to work with environment variables and
  * the path variable across different runtimes such as bun, node, deno,
- * cloudflare and the browser.
+ * cloudflare and the browser and different operating system differences.
  *
  * Cloudflare and the brower uses an in memory store.
  *
@@ -11,13 +11,22 @@
  * object provides additional methods to convert values to boolean,
  * int, number, json, etc.
  *
+ * ![logo](https://raw.githubusercontent.com/bearz-io/js/refs/heads/main/eng/assets/bearz.io.png)
+ *
+ * [![JSR](https://jsr.io/badges/@bearz/env)](https://jsr.io/@bearz/env)
+ * [![npm version](https://badge.fury.io/js/@bearz%2Fenv.svg)](https://badge.fury.io/js/@bearz%2Fenv)
+ * [![GitHub version](https://badge.fury.io/gh/bearz-io%2Fjs-env.svg)](https://badge.fury.io/gh/bearz-io%2Fjs-env)
+ *
  * ## Documentation
  *
  * Documentation is available on [jsr.io](https://jsr.io/@bearz/env/doc)
  *
+ * A list of other modules can be found at [github.com/bearz-io/js](https://github.com/bearz-io/js)
+ *
  * ## Usage
+ *
  * ```typescript
- * import { env } from "@bearz/env";
+ * import * as  env from "@bearz/env";
  *
  * // get values
  * console.log(env.get("USER") || env.get("USERNAME"));
@@ -27,18 +36,12 @@
  * console.log(env.get("MY_VAR"))
  *
  * // expansion
- * env.expand("${MY_VAR}"); // test
- * env.expand("${NO_VALUE:-default}"); // default
+ * console.log(env.expand("${MY_VAR}")); // test
+ * console.log(env.expand("${NO_VALUE:-default}")); // default
  * console.log(env.get("NO_VALUE")); // undefined
  *
  * env.expand("${NO_VALUE:=default}"); // default
  * console.log(env.get("NO_VALUE")); // default
- *
- * env.set("TELEMETRY", "1")
- * console.log(env.getBool("TELEMTRY")); // true
- *
- * env.getBool("TELEMETRY2"); // undefined
- * env.defaultBool("TELEMETRY2", false); // false
  *
  * try {
  *     env.expand("${REQUIRED_VAR:?Environment variable REQUIRED_VAR is missing}");
@@ -54,37 +57,74 @@
  * // undefined will remove a value
  * env.merge({
  *     "VAR2": "VALUE",
- *     "MY_VAR": undefined
+ *     "MY_VAR2": undefined
  * });
+ *
+ * // union only sets values that are not undefined and does not already have a value
+ * // in the example below only NEW will be set.
+ * env.union({
+ *     "VAR2": undefined,
+ *     "NEW": "TEST",
+ *     "MY_VAR": "A"
+ * })
  *
  * env.set("MY_VAR", "test")
  * env.remove("MY_VAR");
  *
  * // append to the end of the environment path variables
- * env.path.append("/opt/test/bin");
+ * env.appendPath("/opt/test/bin");
  *
  * // prepends the path
- * env.path.prepend("/opt/test2/bin");
- * env.path.has("/opt/test2/bin");
+ * env.prependPath("/opt/test2/bin");
+ * env.hasPath("/opt/test2/bin");
  *
  * // removes the path. on windows this is case insensitive.
- * env.path.remove("/opt/test2/bin");
+ * env.removePath("/opt/test2/bin");
  *
  * // replaces the path.
- * env.path.replace("/opt/test/bin", "/opt/test2/bin")
+ * env.replacePath("/opt/test/bin", "/opt/test2/bin")
  *
- * console.log(env.path.split());
- * console.log(env.path) // the full path string
- * console.log(env.path.toString()) // the full path string
+ * console.log(env.splitPath());
+ * console.log(env.getPath()) // the full path string
  *
- * const path = env.path.get()
- *
+ * const path = env.getPath();
  * // overwrites the environment's PATH variable
- * env.path.overwite(`${PATH}:/opt/test4/bin`)
+ * env.setPath(`${path}:/opt/test4/bin`)
  * ```
+ *
+ * ## Variables
+ *
+ * - `proxy` - A proxy object that lets you interact with environment
+ *   variables the way you would with `process.env`.
+ *
+ * ## Functions
+ *
+ * - `appendPath` - Appends a path to the PATH environment variable.
+ * - `expand` - Expands string template with environment variables.
+ * - `get` - Gets an environment variable.
+ * - `getPath` - Gets the environment PATH value.
+ * - `has` - Determines if an environment variable is set.
+ * - `hasPath` - Determines if the PATH variable contains a path.
+ * - `home` - Gets the home environment variable value.
+ * - `hostname` - Gets the hostname environment variable value.
+ * - `joinPath` - Joins paths into a single string.
+ * - `merge` - Merges the values from an object into the environment variables.
+ * - `prependPath` - Prepends a path to the PATH variable.
+ * - `set` - Sets an environment variable.
+ * - `setPath` - Sets the environment's PATH value.
+ * - `remove` - Deletes an environment variable.
+ * - `removePath` - Removes a path from the environment PATH value.
+ * - `replacePath` - Replaces a path from the environment PATH value.
+ * - `splitPath` - Splits the PATH variable into a string array.
+ * - `shell` - Gets the shell environment variable value.
+ * - `os` - Gets the os environment variable value.
+ * - `toObject` - Clones and returns a copy of all environment values.
+ * - `union` - Unions the vlaues from an object into the environment variables.
+ * - `user` - Gets the user environment variable value.
  *
  * ## License
  *
  * [MIT License](./LICENSE.md)
+ * @module
  */
 export * from "./core.js";

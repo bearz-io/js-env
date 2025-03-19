@@ -1,3 +1,8 @@
+/**
+ * The `expand` module provides functionality for expanding variables in strings
+ *
+ * @module
+ */
 import { globals } from "./globals.js";
 import { StringBuilder } from "@bearz/strings/string-builder";
 import { CHAR_BACKWARD_SLASH, CHAR_PERCENT, CHAR_UNDERSCORE } from "@bearz/chars/constants";

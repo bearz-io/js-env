@@ -1,7 +1,7 @@
 /**
  * The `expand` module provides functionality for expanding variables in strings
- * 
- * @module 
+ *
+ * @module
  */
 import { globals } from "./globals.ts";
 import { StringBuilder } from "@bearz/strings/string-builder";
